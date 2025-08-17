@@ -143,7 +143,24 @@
     signal-desktop
     vscode
     git 
-  ];
+    protonvpn-gui  
+    insomnia
+    slack
+    spotify
+    neofetch
+    teams-for-linux
+    zed-editor
+    nodejs_24
+    zoom-us
+    rustup
+];
+
+programs.steam = {
+  enable = true;
+  remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
+  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -171,5 +188,8 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
+
+    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
 
 }
