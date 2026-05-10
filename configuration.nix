@@ -66,6 +66,7 @@ in
 
   users.users.john = {
     isNormalUser = true;
+    shell = pkgs.brush;
     description = "John";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
@@ -87,11 +88,13 @@ in
     insomnia
     slack
     spotify
-    zed-editor
+    direnv
+    unstable.zed-editor
     nodejs_24
     zoom-us
     rustup
     vlc
+    unstable.brush
     obs-studio
     prismlauncher
     telegram-desktop
