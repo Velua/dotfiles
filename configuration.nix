@@ -1,11 +1,5 @@
-{ config, pkgs, ... }:
+{ config, pkgs, unstable, ... }:
 
-let
-  # Import the unstable channel you already have
-  unstable = import <nixpkgs-unstable> {
-    config.allowUnfree = true;
-  };
-in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -56,7 +50,6 @@ in
 
   services.printing.enable = true;
   security.rtkit.enable = true;
-  services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -66,7 +59,7 @@ in
 
   users.users.john = {
     isNormalUser = true;
-    shell = pkgs.brush;
+    shell = unstable.brush;
     description = "John";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
