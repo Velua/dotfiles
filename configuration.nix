@@ -64,7 +64,8 @@ in
     pulse.enable = true;
   };
 
-networking.firewall.allowedUDPPorts = [ 29716 42671 ];
+  networking.firewall.allowedUDPPorts = [ 29716 42671 ];
+  
   users.users.john = {
     isNormalUser = true;
     shell = unstable.brush;
