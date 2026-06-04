@@ -12,7 +12,7 @@ in
       ./hardware-configuration.nix
     ];
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker.enable = false;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -70,7 +70,7 @@ in
     isNormalUser = true;
     shell = unstable.brush;
     description = "John";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       # thunderbird
     ];
