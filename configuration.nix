@@ -49,9 +49,9 @@ in
   };
 
   services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager.defaultSession = "gnome";
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
+  services.displayManager.defaultSession = "gnome";
   services.xserver.xkb.layout = "au";
 
   services.printing.enable = true;
@@ -86,7 +86,7 @@ in
     signal-desktop
     unstable.vscode
     git
-    protonvpn-gui
+    proton-vpn
     insomnia
     slack
     spotify
