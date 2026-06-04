@@ -64,9 +64,10 @@ in
     pulse.enable = true;
   };
 
+networking.firewall.allowedUDPPorts = [ 29716 42671 ];
   users.users.john = {
     isNormalUser = true;
-    shell = pkgs.brush;
+    shell = unstable.brush;
     description = "John";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
@@ -82,7 +83,7 @@ in
     vim
     brave
     signal-desktop
-    unstable.vscode          # ← Now pulling VS Code 1.115.0 from unstable
+    unstable.vscode
     git
     protonvpn-gui
     insomnia
@@ -105,10 +106,10 @@ in
     rust-analyzer
     libreoffice
     fastfetch
-    # ... any others ...
+    monero-gui
   ];
 
-  services.teamviewer.enable = true;
+  services.teamviewer.enable = false;
 
   services.espanso = {
     enable = true;
