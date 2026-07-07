@@ -1,18 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, unstable, ... }:
 
-let
-  # Import the unstable channel you already have
-  unstable = import <nixpkgs-unstable> {
-    config.allowUnfree = true;
-  };
-in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
-  virtualisation.docker.enable = false;
+  virtualisation.docker.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -68,9 +62,9 @@ in
   
   users.users.john = {
     isNormalUser = true;
-    shell = unstable.brush;
+    shell = pkgs.bashInteractive;
     description = "John";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       # thunderbird
     ];
@@ -96,8 +90,9 @@ in
     zoom-us
     rustup
     vlc
-    unstable.brush
+    simplex-chat-desktop
     obs-studio
+    sendme
     prismlauncher
     telegram-desktop
     unzip
@@ -108,6 +103,15 @@ in
     libreoffice
     fastfetch
     monero-gui
+    termusic
+    mpv
+    unstable.yt-dlp
+    spotdl
+    gst_all_1.gst-plugins-good
+    gst_all_1.gst-plugins-bad
+    gst_all_1.gst-plugins-ugly
+    gst_all_1.gst-libav
+    ffmpeg
   ];
 
   services.teamviewer.enable = false;
