@@ -106,16 +106,27 @@
     termusic
     mpv
     unstable.yt-dlp
-    spotdl
-    gst_all_1.gst-plugins-good
-    gst_all_1.gst-plugins-bad
-    gst_all_1.gst-plugins-ugly
-    gst_all_1.gst-libav
-    ffmpeg
+    spotdl   
+  gst_all_1.gst-plugins-good
+  gst_all_1.gst-plugins-bad
+  gst_all_1.gst-plugins-ugly
+  gst_all_1.gst-libav
+  ffmpeg
   ];
 
   services.teamviewer.enable = false;
 
+  services.jellyfin.enable = true;
+  users.groups.media = {};
+  users.users.jellyfin.extraGroups = [ "media" ];
+  systemd.tmpfiles.rules = [
+    "d /data/media       775 root media -"
+    "d /data/media/Movies 775 root media -"
+    "d /data/media/TV    775 root media -"
+    "d /data/media/Music 775 root media -"
+  ];
+  
+  
   services.espanso = {
     enable = true;
     package = pkgs.espanso-wayland;
